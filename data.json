@@ -1,26 +1,55 @@
-
 {
   "school": {
     "name": "SDN 1 Tasikhargo",
     "shortName": "SDN 1 Tasikhargo",
-    "logoUrl": "https://drive.google.com/uc?export=view&id=1m-ko44ARQ5daersHBIp7FtiOaiuhEnCZ"
+    "logoUrl": "https://ui-avatars.com/api/?name=SD&background=2563eb&color=fff&rounded=true&size=128"
   },
   "navigation": [
-    { "label": "BERANDA", "url": "#", "dropdown": false },
-    { "label": "PROFIL", "url": "#profil", "dropdown": false },
-    { "label": "FASILITAS", "url": "#fasilitas", "dropdown": false },
-    { "label": "GALERI", "url": "#galeri", "dropdown": false },
+    {
+      "label": "BERANDA",
+      "url": "#view-home",
+      "dropdown": false
+    },
+    {
+      "label": "PROFIL",
+      "url": "#profil",
+      "dropdown": false
+    },
+    {
+      "label": "FASILITAS",
+      "url": "#fasilitas",
+      "dropdown": false
+    },
+    {
+      "label": "GALERI",
+      "url": "#galeri",
+      "dropdown": false
+    },
     {
       "label": "PROGRAM",
       "url": "#",
       "dropdown": true,
       "items": [
-        { "label": "Ekstrakurikuler", "url": "#" },
-        { "label": "Pembinaan Karakter", "url": "#" }
+        {
+          "label": "Ekstrakurikuler",
+          "url": "#"
+        },
+        {
+          "label": "Pembinaan Karakter",
+          "url": "#"
+        }
       ]
     },
-    { "label": "BERITA", "url": "#berita", "dropdown": false },
-    { "label": "PPDB", "url": "#ppdb", "dropdown": false }
+    {
+      "label": "BERITA",
+      "url": "#berita",
+      "dropdown": false
+    },
+    {
+      "label": "PPDB",
+      "url": "#ppdb",
+      "dropdown": false
+    }
   ],
   "headerCTA": {
     "label": "Hubungi Kami",
@@ -32,7 +61,7 @@
     "description": "Lembaga pendidikan dasar yang berfokus pada pembentukan karakter, kedisiplinan, dan prestasi akademik maupun non-akademik sejak usia dini.",
     "ctaLabel": "Daftar Sekarang",
     "ctaUrl": "#ppdb",
-    "imageUrl": "https://drive.google.com/uc?export=view&id=1QsXoQvjN4gTvMa0xujhXEEe4lqsv8hiE"
+    "imageUrl": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
   },
   "features": {
     "title": "Program Unggulan",
@@ -59,7 +88,7 @@
     "profile": {
       "badge": "Profil Singkat",
       "description": "SDN 1 Tasikhargo adalah lembaga pendidikan dasar negeri yang memiliki komitmen kuat untuk menciptakan lingkungan belajar yang berkualitas, inklusif, dan mendukung perkembangan kognitif serta karakter anak-anak di wilayah Jatisrono dan sekitarnya.",
-      "imageUrl": "https://drive.google.com/uc?export=view&id=1Lq33TB6_fj2QqyCODw2vqRIWj9pjhv9_"
+      "imageUrl": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80"
     },
     "visionMission": {
       "badgeVision": "Visi",
@@ -71,29 +100,59 @@
         "Membiasakan budaya disiplin, sopan santun, dan peduli lingkungan di sekolah.",
         "Meningkatkan kualitas tenaga pendidik dan kependidikan."
       ],
-      "imageUrl": "https://drive.google.com/uc?export=view&id=1596KUHbo51SE5fLgYvBvOf6DpC1fIMxF"
+      "imageUrl": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=80"
     }
   },
   "facilities": {
     "title": "Fasilitas Sekolah",
     "subtitle": "Sarana dan Prasarana Penunjang Belajar",
     "items": [
-      { "title": "Ruang Kelas Nyaman", "imageUrl": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80" },
-      { "title": "Perpustakaan Lengkap", "imageUrl": "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=600&q=80" },
-      { "title": "Lapangan Olahraga", "imageUrl": "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80" },
-      { "title": "Laboratorium Komputer", "imageUrl": "https://images.unsplash.com/photo-1517673132405-a56a62b18cb6?auto=format&fit=crop&w=600&q=80" }
+      {
+        "title": "Ruang Kelas Nyaman",
+        "imageUrl": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        "title": "Perpustakaan Lengkap",
+        "imageUrl": "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        "title": "Lapangan Olahraga",
+        "imageUrl": "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        "title": "Laboratorium Komputer",
+        "imageUrl": "https://images.unsplash.com/photo-1517673132405-a56a62b18cb6?auto=format&fit=crop&w=600&q=80"
+      }
     ]
   },
   "gallery": {
     "title": "Galeri Kegiatan",
     "subtitle": "Dokumentasi Aktivitas Siswa dan Sekolah",
     "items": [
-      { "title": "Kegiatan Belajar", "imageUrl": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80" },
-      { "title": "Upacara Bendera", "imageUrl": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=80" },
-      { "title": "Kerja Kelompok", "imageUrl": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" },
-      { "title": "Ekstrakurikuler", "imageUrl": "https://images.unsplash.com/photo-1511629091441-ee46146481b6?auto=format&fit=crop&w=800&q=80" },
-      { "title": "Olahraga Bersama", "imageUrl": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80" },
-      { "title": "Kesenian Daerah", "imageUrl": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=800&q=80" }
+      {
+        "title": "Kegiatan Belajar",
+        "imageUrl": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "title": "Upacara Bendera",
+        "imageUrl": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "title": "Kerja Kelompok",
+        "imageUrl": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "title": "Ekstrakurikuler",
+        "imageUrl": "https://images.unsplash.com/photo-1511629091441-ee46146481b6?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "title": "Olahraga Bersama",
+        "imageUrl": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "title": "Kesenian Daerah",
+        "imageUrl": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=800&q=80"
+      }
     ]
   },
   "ppdb": {
@@ -112,56 +171,70 @@
     "title": "Berita & Artikel",
     "items": [
       {
-        "imageUrl": "https://drive.google.com/uc?export=view&id=10P08C9n0xcOfWKC6TFlKzTpvVeXOOBNn",
-        "categories": ["PRESTASI"],
+        "imageUrl": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
+        "categories": [
+          "PRESTASI"
+        ],
         "title": "Juara 1 Lomba Cerdas Cermat Tingkat Kecamatan",
         "author": "SDN 1 Tasikhargo",
         "date": "22 SEPTEMBER 2026",
         "content": "<p>Siswa-siswi SDN 1 Tasikhargo berhasil menorehkan prestasi gemilang dengan meraih Juara 1 pada ajang Lomba Cerdas Cermat tingkat Kecamatan Jatisrono. Kegiatan ini diselenggarakan di balai kecamatan dan diikuti oleh puluhan sekolah dasar lainnya.</p><p>Kepala sekolah menyampaikan rasa bangganya atas pencapaian ini. 'Ini adalah hasil kerja keras para siswa dan guru pembimbing yang tak lelah berlatih,' ujarnya. Harapannya, prestasi ini dapat dipertahankan dan ditingkatkan di tingkat kabupaten mendatang.</p>"
       },
       {
-        "imageUrl": "https://drive.google.com/uc?export=view&id=10P08C9n0xcOfWKC6TFlKzTpvVeXOOBNn",
-        "categories": ["KEGIATAN"],
+        "imageUrl": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
+        "categories": [
+          "KEGIATAN"
+        ],
         "title": "Peringatan Hari Kemerdekaan RI di Sekolah",
         "author": "Tim Redaksi",
         "date": "17 AGUSTUS 2026",
         "content": "<p>Dalam rangka memperingati Hari Kemerdekaan Republik Indonesia, SDN 1 Tasikhargo mengadakan serangkaian lomba tradisional yang diikuti oleh seluruh siswa dari kelas 1 hingga kelas 6.</p><p>Kemeriahan terlihat dari antusiasme siswa mengikuti lomba balap karung, makan kerupuk, dan tarik tambang. Kegiatan ini bertujuan menanamkan semangat nasionalisme dan sportivitas sejak dini.</p>"
       },
       {
-        "imageUrl": "https://drive.google.com/uc?export=view&id=10P08C9n0xcOfWKC6TFlKzTpvVeXOOBNn",
-        "categories": ["EKSTRAKURIKULER"],
+        "imageUrl": "https://images.unsplash.com/photo-1511629091441-ee46146481b6?auto=format&fit=crop&w=800&q=80",
+        "categories": [
+          "EKSTRAKURIKULER"
+        ],
         "title": "Perkemahan Sabtu Minggu (Persami) Penggalang",
         "author": "Pembina Pramuka",
         "date": "15 MEI 2026",
         "content": "<p>Gerakan Pramuka Gugus Depan SDN 1 Tasikhargo sukses menyelenggarakan Perkemahan Sabtu Minggu (Persami) yang berlokasi di lapangan utama sekolah. Acara ini dikhususkan bagi anggota pramuka penggalang kelas 4, 5, dan 6.</p><p>Berbagai materi kepramukaan diajarkan, mulai dari baris-berbaris, tali-temali, hingga api unggun di malam hari yang menambah keakraban antar siswa.</p>"
       },
       {
-        "imageUrl": "https://drive.google.com/uc?export=view&id=10P08C9n0xcOfWKC6TFlKzTpvVeXOOBNn",
-        "categories": ["AKADEMIK"],
+        "imageUrl": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=80",
+        "categories": [
+          "AKADEMIK"
+        ],
         "title": "Pelaksanaan Penilaian Akhir Semester (PAS)",
         "author": "Tata Usaha",
         "date": "11 APRIL 2026",
         "content": "<p>Berdasarkan kalender pendidikan, SDN 1 Tasikhargo mulai melaksanakan Penilaian Akhir Semester (PAS) untuk tahun ajaran ini. Pelaksanaan ujian berjalan lancar, tertib, dan kondusif di semua kelas.</p><p>Para guru mengimbau orang tua untuk turut mengawasi jam belajar anak di rumah agar hasil yang didapatkan bisa maksimal dan memuaskan.</p>"
       },
       {
-        "imageUrl": "https://drive.google.com/uc?export=view&id=10P08C9n0xcOfWKC6TFlKzTpvVeXOOBNn",
-        "categories": ["KESEHATAN"],
+        "imageUrl": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+        "categories": [
+          "KESEHATAN"
+        ],
         "title": "Penyuluhan Kesehatan Gigi dan Mulut",
         "author": "Puskesmas Jatisrono",
         "date": "02 MARET 2026",
         "content": "<p>Bekerja sama dengan Puskesmas Jatisrono, sekolah mengadakan penyuluhan cara menjaga kesehatan gigi dan mulut, serta simulasi sikat gigi massal di halaman sekolah.</p>"
       },
       {
-        "imageUrl": "https://drive.google.com/uc?export=view&id=10P08C9n0xcOfWKC6TFlKzTpvVeXOOBNn",
-        "categories": ["LINGKUNGAN"],
+        "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+        "categories": [
+          "LINGKUNGAN"
+        ],
         "title": "Jumat Bersih: Menanam Pohon di Area Sekolah",
         "author": "Guru Kelas",
         "date": "15 FEBRUARI 2026",
         "content": "<p>Program rutin Jumat Bersih kali ini difokuskan pada kegiatan menanam pohon dan merapikan taman sekolah. Siswa membawa alat kebersihan dari rumah dan bergotong royong.</p>"
       },
       {
-        "imageUrl": "https://drive.google.com/uc?export=view&id=10P08C9n0xcOfWKC6TFlKzTpvVeXOOBNn",
-        "categories": ["PRESTASI"],
+        "imageUrl": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=800&q=80",
+        "categories": [
+          "PRESTASI"
+        ],
         "title": "Juara 2 Lomba Tari Tradisional Kabupaten",
         "author": "SDN 1 Tasikhargo",
         "date": "10 JANUARI 2026",
@@ -178,14 +251,23 @@
       "title": "Kontak Info",
       "content": "Desa Tasikhargo, Kec. Jatisrono\nKab. Wonogiri, Jawa Tengah\nEmail: info@sdn1tasikhargo.sch.id"
     },
-    "col3": {
-      "title": "Social Media",
-      "links": [
-        { "icon": "facebook", "url": "#" },
-        { "icon": "twitter", "url": "#" },
-        { "icon": "instagram", "url": "#" }
-      ]
-    },
+    "socialMedia": [
+      {
+        "name": "Facebook",
+        "icon": "facebook",
+        "url": "#"
+      },
+      {
+        "name": "Twitter",
+        "icon": "twitter",
+        "url": "#"
+      },
+      {
+        "name": "Instagram",
+        "icon": "instagram",
+        "url": "#"
+      }
+    ],
     "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.815967732297!2d111.14445!3d-7.91444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a2f123456789%3A0x1234567890abcdef!2sJatisrono%2C%20Wonogiri%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1697200000000!5m2!1sen!2sid",
     "copyright": "Copyright © 2026 - SDN 1 Tasikhargo Jatisrono"
   },
