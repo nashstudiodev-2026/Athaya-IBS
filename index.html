@@ -1,468 +1,396 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Athaya Islamic Boarding School Solo</title>
+    <title>SDN 1 Tasikhargo</title>
     
-    <!-- Integrasi Font Plus Jakarta Sans -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Integrasi Tailwind CSS & Kustomisasi Tema -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
                         brand: {
-                            blue: '#1E3A8A', // Biru gelap elegan (mirip warna korporat pendidikan)
-                            light: '#EFF6FF', // Biru sangat muda untuk latar
-                            accent: '#F59E0B' // Oranye hangat untuk CTA/Aksen
+                            blue: '#2563eb', // Warna biru identik desain asli (Tailwind blue-600)
+                            dark: '#1e3a8a',
+                            light: '#eff6ff'
                         }
                     },
                     boxShadow: {
-                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
                     }
                 }
             }
         }
     </script>
-    
-    <!-- Ikon dari Phosphor Icons (Sangat bersih dan konsisten) -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
+    <!-- Custom CSS for components that are hard to do with utility only -->
     <style>
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        /* Animasi loading state */
-        .shimmer {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Transisi Accordion */
-        .accordion-content {
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease;
-            max-height: 0;
+        html { scroll-behavior: smooth; }
+        .nav-dropdown {
+            visibility: hidden;
             opacity: 0;
-            overflow: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
         }
-        .accordion-content.open {
-            max-height: 500px; /* Nilai arbitrer yang cukup besar */
+        .nav-item:hover .nav-dropdown {
+            visibility: visible;
             opacity: 1;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
+            transform: translateY(0);
         }
-        .rotate-icon { transform: rotate(45deg); }
+        .curved-edge {
+            border-bottom-right-radius: 80px;
+        }
+        /* Custom scrollbar for wa-widget if needed */
+        .wa-popup::-webkit-scrollbar { width: 4px; }
+        .wa-popup::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased bg-gray-50 flex flex-col min-h-screen">
+<body class="bg-slate-50 font-sans text-slate-800 antialiased relative">
 
-    <header class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo & Brand -->
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="w-10 h-10 bg-brand-blue rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                        A
-                    </div>
-                    <div>
-                        <h1 class="font-bold text-lg leading-none text-brand-blue tracking-tight">Athaya IBS</h1>
-                        <span class="text-[10px] uppercase font-semibold tracking-widest text-gray-500">Solo</span>
-                    </div>
-                </div>
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <!-- Logo area -->
+            <a href="#" class="flex items-center gap-3">
+                <img id="logo-img" src="" alt="Logo" class="w-12 h-12 object-contain rounded-full shadow-sm">
+                <span id="logo-text" class="font-bold text-xl tracking-tight text-slate-800"></span>
+            </a>
 
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex gap-8 items-center font-medium text-sm">
-                    <a href="#kurikulum" class="text-gray-600 hover:text-brand-blue transition-colors">Kurikulum</a>
-                    <a href="#program" class="text-gray-600 hover:text-brand-blue transition-colors">Program</a>
-                    <a href="#fasilitas" class="text-gray-600 hover:text-brand-blue transition-colors">Fasilitas</a>
-                    <a href="#psb" class="text-gray-600 hover:text-brand-blue transition-colors">Pendaftaran</a>
-                    <a id="nav-cta" href="#" target="_blank" class="px-5 py-2.5 bg-brand-blue text-white rounded-full hover:bg-blue-800 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">Daftar Sekarang</a>
-                </nav>
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-[13px] font-semibold text-slate-600" id="nav-container">
+                <!-- Injected via JS -->
+            </nav>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-blue p-2">
-                        <i class="ph ph-list text-3xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+            <!-- CTA Button -->
+            <a href="#" id="header-cta" class="hidden lg:inline-block bg-brand-blue hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-colors shadow-md shadow-blue-500/30">
+                <!-- Injected via JS -->
+            </a>
 
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-2xl">
-            <div class="px-4 pt-2 pb-6 space-y-1 flex flex-col gap-2">
-                <a href="#kurikulum" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Kurikulum</a>
-                <a href="#program" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Program Unggulan</a>
-                <a href="#psb" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Pendaftaran & Biaya</a>
-            </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="lg:hidden text-slate-600 p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
     </header>
 
-    <main class="flex-grow pt-20">
-        <!-- Hero Section -->
-        <section class="relative bg-white overflow-hidden">
-            <div class="absolute inset-0 bg-brand-light transform -skew-y-3 origin-top-left scale-110 z-0"></div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-32 flex flex-col items-center text-center">
-                <span id="hero-jenjang" class="px-4 py-1.5 rounded-full bg-blue-100 text-brand-blue text-sm font-semibold tracking-wide mb-6 inline-block shimmer text-transparent">Loading...</span>
-                
-                <h1 id="hero-tagline" class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight max-w-4xl leading-tight mb-6 shimmer text-transparent rounded-lg">
-                    Memuat informasi tagline sekolah...
+    <main>
+        <section class="max-w-7xl mx-auto px-6 py-12 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h1 id="hero-title" class="text-4xl lg:text-5xl font-extrabold text-slate-900 leading-[1.15] tracking-tight">
+                    <!-- Injected via JS -->
                 </h1>
-                
-                <p id="hero-desc" class="text-lg md:text-xl text-gray-600 max-w-2xl mb-10 leading-relaxed shimmer text-transparent rounded-lg">
-                    Memuat deskripsi singkat sekolah, harap tunggu sebentar.
+                <p id="hero-desc" class="text-slate-600 text-base lg:text-lg leading-relaxed max-w-lg">
+                    <!-- Injected via JS -->
                 </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                    <a id="hero-cta" href="#" target="_blank" class="px-8 py-4 bg-brand-blue text-white rounded-full font-semibold text-lg hover:bg-blue-800 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 text-center flex items-center justify-center gap-2">
-                        Daftar Sekarang <i class="ph-bold ph-arrow-right"></i>
-                    </a>
-                    <a href="#kurikulum" class="px-8 py-4 bg-white text-brand-blue border border-gray-200 rounded-full font-semibold text-lg hover:bg-gray-50 transition-all text-center">
-                        Pelajari Program
+                <div class="pt-4">
+                    <a href="#" id="hero-cta" class="inline-block bg-brand-blue hover:bg-blue-700 text-white px-8 py-3.5 rounded-lg text-sm font-semibold transition-colors shadow-lg shadow-blue-500/40">
+                        <!-- Injected via JS -->
                     </a>
                 </div>
             </div>
+            <div class="relative flex justify-center lg:justify-end">
+                <!-- decorative background element -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-brand-light to-white rounded-[3rem] -z-10 transform translate-x-4 translate-y-4 shadow-soft"></div>
+                <img id="hero-img" src="" alt="Hero Composition" class="w-full max-w-lg rounded-2xl shadow-2xl object-cover hover:scale-[1.01] transition-transform duration-500">
+                <!-- Floating badge simulation -->
+                <img id="hero-badge" src="" class="absolute -top-6 -right-6 lg:-right-10 w-48 shadow-lg rounded-lg border-2 border-white" alt="Badge">
+            </div>
         </section>
 
-        <section id="kurikulum" class="py-20 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">3 Pilar Kurikulum Terbaik</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">Pendekatan komprehensif kami untuk memastikan keseimbangan akademis, keterampilan praktis, dan pondasi spiritual.</p>
-                </div>
-                
-                <div id="kurikulum-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Cards akan disuntikkan via JS -->
-                    <div class="h-64 bg-white rounded-2xl shadow-soft shimmer"></div>
-                    <div class="h-64 bg-white rounded-2xl shadow-soft shimmer"></div>
-                    <div class="h-64 bg-white rounded-2xl shadow-soft shimmer"></div>
+        <section id="profil" class="bg-white py-20">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <h2 id="feat-title" class="text-3xl font-bold text-slate-900 mb-2"></h2>
+                <p id="feat-subtitle" class="text-slate-500 mb-12"></p>
+
+                <div class="grid md:grid-cols-3 gap-6" id="features-container">
+                    <!-- Injected via JS -->
                 </div>
             </div>
         </section>
 
-        <section id="program" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col lg:flex-row gap-16">
-                    <!-- Kiri: Program -->
-                    <div class="lg:w-2/3">
-                        <h2 class="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-                            <i class="ph-duotone ph-star text-brand-accent text-4xl"></i> Program Unggulan
-                        </h2>
-                        <div id="program-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <!-- Data akan dimuat disini -->
-                        </div>
-                    </div>
-                    
-                    <!-- Kanan: Fasilitas & Nilai -->
-                    <div id="fasilitas" class="lg:w-1/3 space-y-10">
-                        <!-- Fasilitas -->
-                        <div class="bg-brand-light rounded-3xl p-8 border border-blue-100">
-                            <h3 class="text-xl font-bold text-brand-blue mb-6">Fasilitas Penunjang</h3>
-                            <ul id="fasilitas-list" class="space-y-3">
-                                <!-- Data dimuat disini -->
-                            </ul>
-                        </div>
-                        
-                        <!-- Nilai Dasar -->
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-6">Nilai Dasar Kami</h3>
-                            <div id="nilai-list" class="flex flex-wrap gap-2">
-                                <!-- Data dimuat disini -->
-                            </div>
-                        </div>
+        <section class="max-w-7xl mx-auto px-6 py-24 space-y-24">
+            
+            <!-- Profil -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span id="about-badge" class="inline-block bg-brand-blue text-white text-xs font-bold px-3 py-1.5 rounded-md mb-6"></span>
+                    <p id="about-desc" class="text-slate-600 text-lg leading-relaxed"></p>
+                </div>
+                <div class="relative">
+                    <img id="about-img" src="" alt="Gedung" class="w-full rounded-2xl shadow-xl curved-edge object-cover h-80">
+                    <div class="absolute bottom-0 right-0 bg-brand-blue text-white text-xs font-semibold px-4 py-2 rounded-tl-xl curved-edge">
+                        Fasilitas
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="psb" class="py-20 bg-gray-900 text-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Penerimaan Siswa Baru</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Transparan, mudah, dan sepenuhnya online. Bergabunglah bersama sekolah para juara.</p>
+            <!-- Visi Misi -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1 relative">
+                    <img id="vm-img" src="" alt="Siswa" class="w-full rounded-2xl shadow-xl object-cover h-[400px]">
                 </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                    <!-- Biaya Pendidikan -->
-                    <div class="bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-700">
-                        <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
-                            <i class="ph-duotone ph-wallet text-green-400 text-3xl"></i> Rincian Biaya
-                        </h3>
-                        
-                        <div class="space-y-6" id="biaya-container">
-                            <!-- Akan diisi JS -->
-                        </div>
-                        <p id="biaya-catatan" class="mt-6 text-sm text-gray-400 italic"></p>
-                    </div>
-
-                    <!-- Alur Pendaftaran (Accordion) -->
+                <div class="order-1 lg:order-2 space-y-8">
                     <div>
-                        <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
-                            <i class="ph-duotone ph-list-numbers text-blue-400 text-3xl"></i> Alur Pendaftaran
-                        </h3>
-                        <div id="alur-container" class="space-y-4">
-                            <!-- Accordion dimuat disini -->
-                        </div>
+                        <span id="visi-badge" class="inline-block bg-brand-blue text-white text-xs font-bold px-3 py-1.5 rounded-md mb-4"></span>
+                        <p id="visi-text" class="text-slate-700 text-lg font-medium leading-relaxed"></p>
                     </div>
+                    <div>
+                        <span id="misi-badge" class="inline-block bg-brand-blue text-white text-xs font-bold px-3 py-1.5 rounded-md mb-4"></span>
+                        <ul id="misi-list" class="space-y-3 text-slate-600">
+                            <!-- Injected via JS -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="berita" class="bg-white py-20">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 id="news-title" class="text-3xl font-bold text-slate-900 mb-10"></h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="news-container">
+                    <!-- Injected via JS -->
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-white border-t border-gray-200 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <div class="lg:col-span-2">
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center text-white font-bold text-sm">A</div>
-                        <h2 class="font-bold text-xl text-gray-900">Athaya IBS Solo</h2>
-                    </div>
-                    <p class="text-gray-600 mb-6 max-w-sm">The Real Home of The Champions. Menyiapkan generasi unggul untuk dunia dan akhirat.</p>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4 uppercase tracking-wider text-sm">Hubungi Kami</h4>
-                    <ul class="space-y-3 text-gray-600 text-sm" id="footer-kontak">
-                        <!-- Data kontak via JS -->
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4 uppercase tracking-wider text-sm">Media Sosial</h4>
-                    <a id="footer-ig" href="#" target="_blank" class="flex items-center gap-2 text-gray-600 hover:text-brand-blue transition-colors">
-                        <i class="ph-fill ph-instagram-logo text-xl"></i> <span id="ig-text">Instagram</span>
-                    </a>
+    <footer class="bg-brand-blue text-white pt-16 pb-8 border-t-4 border-blue-400">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <!-- Col 1 -->
+            <div>
+                <h3 id="footer-col1-title" class="font-bold text-lg mb-4"></h3>
+                <p id="footer-col1-desc" class="text-blue-100 text-sm leading-relaxed"></p>
+            </div>
+            
+            <!-- Col 2 -->
+            <div>
+                <h3 id="footer-col2-title" class="font-bold text-lg mb-4"></h3>
+                <p id="footer-col2-content" class="text-blue-100 text-sm leading-relaxed whitespace-pre-line"></p>
+            </div>
+            
+            <!-- Col 3 -->
+            <div>
+                <h3 id="footer-col3-title" class="font-bold text-lg mb-4"></h3>
+                <div class="flex gap-4" id="footer-socials">
+                    <!-- Injected via JS -->
                 </div>
             </div>
-            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-                <p>&copy; <span id="current-year"></span> Athaya Islamic Boarding School. All rights reserved.</p>
-                <p>Designed with clean UI principles.</p>
+            
+            <!-- Col 4 (Map) -->
+            <div class="bg-white/10 p-2 rounded-xl">
+                <iframe id="footer-map" src="" class="w-full h-40 rounded-lg border-0" allowfullscreen="" loading="lazy"></iframe>
             </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 border-t border-blue-500/50 pt-8 text-center text-blue-200 text-sm">
+            <p id="footer-copy"></p>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a id="fab-wa" href="#" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-xl hover:bg-green-600 hover:scale-110 transition-all z-50 flex items-center justify-center group">
-        <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
-        <span class="absolute right-full mr-4 bg-gray-900 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Hubungi Admin</span>
-    </a>
+    <div class="fixed bottom-6 right-6 z-[100]">
+        <!-- Popup Container -->
+        <div id="wa-popup" class="hidden absolute bottom-16 right-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden transition-all origin-bottom-right">
+            <div class="bg-[#25D366] p-5 text-white">
+                <h4 id="wa-greeting" class="font-bold text-lg"></h4>
+                <p id="wa-subgreeting" class="text-sm opacity-90"></p>
+            </div>
+            <div class="p-4 bg-slate-50 text-xs text-slate-500 text-center">
+                <span id="wa-reply-time"></span>
+            </div>
+            <div class="p-2 max-h-64 overflow-y-auto" id="wa-contacts">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+        
+        <!-- Toggle Button -->
+        <button id="wa-toggle" class="bg-[#25D366] hover:bg-[#20b858] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+            </svg>
+        </button>
+    </div>
 
     <script>
-        // Set tahun hak cipta
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Logika Menu Mobile
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const menuIcon = btn.querySelector('i');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            if (menu.classList.contains('hidden')) {
-                menuIcon.classList.replace('ph-x', 'ph-list');
-            } else {
-                menuIcon.classList.replace('ph-list', 'ph-x');
-            }
-        });
-
-        // Menutup menu mobile saat link diklik
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                menuIcon.classList.replace('ph-x', 'ph-list');
-            });
-        });
-
-        // Fungsi Helper untuk membersihkan shimmer
-        const removeShimmer = (el) => {
-            el.classList.remove('shimmer', 'text-transparent', 'rounded-lg');
-        };
-
-        async function loadData() {
+        document.addEventListener('DOMContentLoaded', async () => {
             try {
-                // Memanggil file data.json
+                // Fetch data from local json file
                 const response = await fetch('data.json');
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error('Data tidak ditemukan');
                 const data = await response.json();
-                renderData(data);
+
+                // 1. Populate Header & Nav
+                document.getElementById('logo-img').src = data.school.logoUrl;
+                document.getElementById('logo-text').textContent = data.school.shortName;
+                document.getElementById('header-cta').textContent = data.headerCTA.label;
+                document.getElementById('header-cta').href = data.headerCTA.url;
+
+                const navContainer = document.getElementById('nav-container');
+                let navHtml = '';
+                data.navigation.forEach(item => {
+                    if (item.dropdown) {
+                        let subItems = item.items.map(sub => `<a href="${sub.url}" class="block px-4 py-2 hover:bg-slate-700 transition-colors">${sub.label}</a>`).join('');
+                        navHtml += `
+                            <div class="relative group nav-item py-4">
+                                <button class="flex items-center gap-1 hover:text-brand-blue transition-colors focus:outline-none">
+                                    ${item.label}
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </button>
+                                <div class="nav-dropdown absolute top-full left-0 mt-0 w-56 bg-slate-800 text-white rounded-lg shadow-xl overflow-hidden py-2 border border-slate-700">
+                                    ${subItems}
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        navHtml += `<a href="${item.url}" class="hover:text-brand-blue transition-colors py-4">${item.label}</a>`;
+                    }
+                });
+                navContainer.innerHTML = navHtml;
+
+                // 2. Populate Hero
+                document.getElementById('hero-title').textContent = data.hero.title;
+                document.getElementById('hero-desc').textContent = data.hero.description;
+                document.getElementById('hero-cta').textContent = data.hero.ctaLabel;
+                document.getElementById('hero-cta').href = data.hero.ctaUrl;
+                document.getElementById('hero-img').src = data.hero.imageUrl;
+                document.getElementById('hero-badge').src = data.hero.badgeUrl;
+
+                // 3. Populate Features
+                document.getElementById('feat-title').textContent = data.features.title;
+                document.getElementById('feat-subtitle').textContent = data.features.subtitle;
+                const featContainer = document.getElementById('features-container');
+                data.features.items.forEach(item => {
+                    featContainer.innerHTML += `
+                        <div class="bg-brand-blue text-white rounded-[1.5rem] p-8 transition-transform hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/30">
+                            ${item.icon}
+                            <h3 class="text-xl font-bold mb-3">${item.title}</h3>
+                            <p class="text-blue-100 text-sm leading-relaxed">${item.description}</p>
+                        </div>
+                    `;
+                });
+
+                // 4. Populate About
+                document.getElementById('about-badge').textContent = data.about.profile.badge;
+                document.getElementById('about-desc').textContent = data.about.profile.description;
+                document.getElementById('about-img').src = data.about.profile.imageUrl;
+                
+                document.getElementById('vm-img').src = data.about.visionMission.imageUrl;
+                document.getElementById('visi-badge').textContent = data.about.visionMission.badgeVision;
+                document.getElementById('visi-text').textContent = data.about.visionMission.vision;
+                document.getElementById('misi-badge').textContent = data.about.visionMission.badgeMission;
+                const misiList = document.getElementById('misi-list');
+                data.about.visionMission.missions.forEach(misi => {
+                    misiList.innerHTML += `
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+                            <span>${misi}</span>
+                        </li>
+                    `;
+                });
+
+                // 5. Populate News
+                document.getElementById('news-title').textContent = data.news.title;
+                const newsContainer = document.getElementById('news-container');
+                data.news.items.forEach(item => {
+                    let tags = item.categories.map(cat => `<span class="bg-brand-blue text-white text-[10px] font-bold px-2 py-1 rounded-sm">${cat}</span>`).join('');
+                    newsContainer.innerHTML += `
+                        <a href="${item.url}" class="block group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-slate-100 pb-4">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5">
+                                <div class="flex gap-2 mb-3 flex-wrap">
+                                    ${tags}
+                                </div>
+                                <h3 class="font-bold text-slate-800 leading-snug mb-4 group-hover:text-brand-blue transition-colors line-clamp-2">${item.title}</h3>
+                                <div class="flex items-center text-[11px] text-slate-400 font-medium uppercase tracking-wide gap-2">
+                                    <span>${item.author}</span>
+                                    <span>&bull;</span>
+                                    <span>${item.date}</span>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                });
+
+                // 6. Populate Footer
+                document.getElementById('footer-col1-title').textContent = data.footer.col1.title;
+                document.getElementById('footer-col1-desc').textContent = data.footer.col1.description;
+                document.getElementById('footer-col2-title').textContent = data.footer.col2.title;
+                document.getElementById('footer-col2-content').textContent = data.footer.col2.content;
+                document.getElementById('footer-col3-title').textContent = data.footer.col3.title;
+                document.getElementById('footer-map').src = data.footer.mapEmbed;
+                document.getElementById('footer-copy').textContent = data.footer.copyright;
+                
+                const socialContainer = document.getElementById('footer-socials');
+                // Basic mapping for social icons using SVG paths
+                const icons = {
+                    facebook: '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" /></svg>',
+                    twitter: '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>',
+                    instagram: '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>'
+                };
+                data.footer.col3.links.forEach(link => {
+                    socialContainer.innerHTML += `
+                        <a href="${link.url}" class="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors">
+                            ${icons[link.icon] || icons.facebook}
+                        </a>
+                    `;
+                });
+
+                // 7. Populate WhatsApp Widget
+                document.getElementById('wa-greeting').textContent = data.whatsapp.greeting;
+                document.getElementById('wa-subgreeting').textContent = data.whatsapp.subGreeting;
+                document.getElementById('wa-reply-time').textContent = data.whatsapp.replyTime;
+                
+                const waContacts = document.getElementById('wa-contacts');
+                data.whatsapp.contacts.forEach(contact => {
+                    waContacts.innerHTML += `
+                        <a href="https://wa.me/${contact.number}" target="_blank" class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-50 last:border-0 group">
+                            <div class="bg-[#25D366] text-white p-2 rounded-full group-hover:scale-110 transition-transform">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M13.6 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.93 7.93 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.57 6.57 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-slate-700">${contact.role}</p>
+                                <p class="text-xs text-slate-500">${contact.name}</p>
+                            </div>
+                        </a>
+                    `;
+                });
+
             } catch (error) {
-                console.error("Gagal memuat data.json:", error);
-                // Graceful degradation: Meminta pengguna memeriksa server lokal
-                document.getElementById('hero-tagline').textContent = "Kesalahan Memuat Data";
-                document.getElementById('hero-desc').textContent = "Pastikan Anda menjalankan file ini menggunakan Local Web Server agar Fetch API dapat membaca data.json.";
-                removeShimmer(document.getElementById('hero-tagline'));
-                removeShimmer(document.getElementById('hero-desc'));
+                console.error("Gagal memuat data:", error);
+                // Fallback sederhana jika file JSON gagal dimuat (misal karena origin blokir)
+                document.getElementById('hero-title').innerHTML = "Kesalahan memuat <br/> <span class='text-brand-blue'>Data JSON</span>";
+                document.getElementById('hero-desc').textContent = "Pastikan file data.json berada di direktori yang sama dan dijalankan melalui lokal server (Live Server).";
             }
-        }
 
-        function renderData(data) {
-            // 1. Render Hero Section
-            const jenjang = document.getElementById('hero-jenjang');
-            const tagline = document.getElementById('hero-tagline');
-            const desc = document.getElementById('hero-desc');
-            const ctaBtn = document.getElementById('hero-cta');
-            const navCta = document.getElementById('nav-cta');
+            // WhatsApp Toggle Logic
+            const waToggle = document.getElementById('wa-toggle');
+            const waPopup = document.getElementById('wa-popup');
             
-            jenjang.textContent = data.sekolah.jenjang;
-            tagline.textContent = data.sekolah.tagline;
-            desc.textContent = data.sekolah.deskripsiSingkat;
+            waToggle.addEventListener('click', () => {
+                waPopup.classList.toggle('hidden');
+            });
             
-            [jenjang, tagline, desc].forEach(removeShimmer);
-
-            ctaBtn.href = data.sekolah.ctaLink;
-            navCta.href = data.sekolah.ctaLink;
-
-            // 2. Render Kurikulum (Grid)
-            const kurikulumGrid = document.getElementById('kurikulum-grid');
-            kurikulumGrid.innerHTML = data.kurikulum.map(item => `
-                <div class="bg-white rounded-2xl p-8 shadow-soft border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
-                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                        <i class="ph-duotone ${item.ikon} text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">${item.nama}</h3>
-                    <p class="text-gray-600 leading-relaxed">${item.deskripsi}</p>
-                </div>
-            `).join('');
-
-            // 3. Render Program Unggulan
-            const programGrid = document.getElementById('program-grid');
-            programGrid.innerHTML = data.programUnggulan.map(prog => `
-                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-blue-200 transition-colors">
-                    <h4 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
-                        <i class="ph-fill ph-check-circle text-green-500"></i> ${prog.nama}
-                    </h4>
-                    <p class="text-sm text-gray-600 leading-relaxed">${prog.deskripsi}</p>
-                </div>
-            `).join('');
-
-            // 4. Render Fasilitas
-            const fasilitasList = document.getElementById('fasilitas-list');
-            fasilitasList.innerHTML = data.fasilitas.map(f => `
-                <li class="flex items-start gap-3 text-gray-700">
-                    <i class="ph-duotone ph-buildings text-brand-blue mt-1 text-lg"></i>
-                    <span>${f}</span>
-                </li>
-            `).join('');
-
-            // 5. Render Nilai Dasar (Chips/Pills)
-            const nilaiList = document.getElementById('nilai-list');
-            nilaiList.innerHTML = data.nilaiDasar.map(n => `
-                <div class="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm font-semibold text-gray-700 shadow-sm cursor-help" title="${n.deskripsi}">
-                    ${n.judul}
-                </div>
-            `).join('');
-
-            // 6. Render Biaya
-            const biayaHtml = `
-                <div class="flex justify-between items-center border-b border-gray-700 pb-4">
-                    <span class="text-gray-400">Pendaftaran</span>
-                    <span class="text-xl font-bold text-white">${data.pendaftaran.biaya.pendaftaran}</span>
-                </div>
-                <div class="flex flex-col border-b border-gray-700 pb-4 gap-1">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400">Uang Pangkal</span>
-                        <span class="text-xl font-bold text-white">${data.pendaftaran.biaya.pangkal}</span>
-                    </div>
-                    <span class="text-xs text-gray-500 text-right">${data.pendaftaran.biaya.rincianPangkal}</span>
-                </div>
-                <div class="flex flex-col pb-2 gap-1">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400">SPP Bulanan</span>
-                        <span class="text-2xl font-bold text-brand-accent">${data.pendaftaran.biaya.bulanan}</span>
-                    </div>
-                    <span class="text-xs text-gray-500 text-right">${data.pendaftaran.biaya.rincianBulanan}</span>
-                </div>
-            `;
-            document.getElementById('biaya-container').innerHTML = biayaHtml;
-            document.getElementById('biaya-catatan').textContent = "* " + data.pendaftaran.biaya.catatan;
-
-            // 7. Render Alur Pendaftaran (Accordion)
-            const alurContainer = document.getElementById('alur-container');
-            alurContainer.innerHTML = data.pendaftaran.alurLangkah.map((step, index) => `
-                <div class="bg-gray-800 border border-gray-700 rounded-2xl overflow-hidden transition-all accordion-item">
-                    <button class="w-full px-6 py-4 flex justify-between items-center text-left focus:outline-none" onclick="toggleAccordion(this)">
-                        <span class="font-bold text-white">${step.langkah}</span>
-                        <i class="ph-bold ph-plus text-gray-400 transition-transform duration-300 icon"></i>
-                    </button>
-                    <div class="accordion-content px-6 text-gray-400 text-sm leading-relaxed bg-gray-800/50">
-                        ${step.detail}
-                    </div>
-                </div>
-            `).join('');
-
-            // Buka accordion pertama secara default
-            setTimeout(() => {
-                const firstAcc = alurContainer.querySelector('button');
-                if(firstAcc) toggleAccordion(firstAcc);
-            }, 100);
-
-            // 8. Render Footer & Kontak
-            const kontakData = data.kontak;
-            const waNumber = kontakData.telepon.replace(/\D/g,''); // Bersihkan spasi
-            const waLink = `https://wa.me/62${waNumber.substring(1)}`; // Format format 62...
-            
-            document.getElementById('footer-kontak').innerHTML = `
-                <li class="flex items-start gap-2"><i class="ph ph-map-pin-line mt-1 text-lg"></i> <span>${kontakData.alamat}</span></li>
-                <li class="flex items-center gap-2"><i class="ph ph-phone text-lg"></i> <span>${kontakData.telepon}</span></li>
-                <li class="flex items-center gap-2"><i class="ph ph-envelope-simple text-lg"></i> <span>${kontakData.email}</span></li>
-            `;
-            
-            document.getElementById('footer-ig').href = `https://instagram.com/${kontakData.instagram}`;
-            document.getElementById('ig-text').textContent = `@${kontakData.instagram}`;
-            
-            // Set FAB Whatsapp Link
-            document.getElementById('fab-wa').href = waLink;
-        }
-
-        // Logika Interaksi Accordion
-        window.toggleAccordion = function(button) {
-            const content = button.nextElementSibling;
-            const icon = button.querySelector('.icon');
-            
-            // Tutup semua yang lain (opsional, untuk menjaga compact layout)
-            document.querySelectorAll('.accordion-content').forEach(el => {
-                if(el !== content && el.classList.contains('open')) {
-                    el.classList.remove('open');
-                    el.previousElementSibling.querySelector('.icon').classList.remove('rotate-icon', 'ph-x');
-                    el.previousElementSibling.querySelector('.icon').classList.add('ph-plus');
+            // Tutup WA pop-up jika klik di luar area
+            document.addEventListener('click', (e) => {
+                if (!waToggle.contains(e.target) && !waPopup.contains(e.target)) {
+                    waPopup.classList.add('hidden');
                 }
             });
-
-            // Toggle yang diklik
-            content.classList.toggle('open');
-            
-            if(content.classList.contains('open')) {
-                icon.classList.remove('ph-plus');
-                icon.classList.add('ph-x', 'rotate-icon');
-            } else {
-                icon.classList.remove('ph-x', 'rotate-icon');
-                icon.classList.add('ph-plus');
-            }
-        };
-
-        // Jalankan fetch saat DOM dimuat
-        document.addEventListener('DOMContentLoaded', loadData);
+        });
     </script>
 </body>
 </html>
