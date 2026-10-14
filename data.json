@@ -1,123 +1,162 @@
 {
-  "sekolah": {
-    "nama": "Athaya Islamic Boarding School Solo",
-    "jenjang": "SMP (Ikhwan & Akhwat)",
-    "tagline": "Global Minded, Strongly Hold Qur'an and Sunnah Values",
-    "deskripsiSingkat": "Kami hadir untuk mendidik generasi muda Muslim agar siap menghadapi tantangan dunia yang terus berubah. Menggabungkan wawasan global yang tajam dengan fondasi tauhid yang kokoh berdasarkan Al-Qur'an dan As-Sunnah.",
-    "ctaText": "Daftar Sekarang",
-    "ctaLink": "https://ppdb.athaya.sch.id"
+  "school": {
+    "name": "SDN 1 Tasikhargo",
+    "shortName": "SDN 1 Tasikhargo",
+    "logoUrl": "https://placehold.co/100x100/2563eb/ffffff?text=SD"
   },
-  "nilaiDasar": [
+  "navigation": [
+    { "label": "BERANDA", "url": "#", "dropdown": false },
+    { "label": "PROFIL", "url": "#profil", "dropdown": false },
     {
-      "judul": "Disiplin",
-      "deskripsi": "Memegang teguh nilai Islam dan aturan sekolah dengan komitmen tinggi."
+      "label": "PROGRAM",
+      "url": "#",
+      "dropdown": true,
+      "items": [
+        { "label": "Ekstrakurikuler", "url": "#" },
+        { "label": "Pembinaan Karakter", "url": "#" }
+      ]
     },
     {
-      "judul": "Saling Menghormati",
-      "deskripsi": "Mengakui dan menghargai keragaman di lingkungan sosial."
+      "label": "AKADEMIK",
+      "url": "#",
+      "dropdown": true,
+      "items": [
+        { "label": "Kalender Akademik 2026/2027", "url": "#" },
+        { "label": "Jadwal Pelajaran", "url": "#" }
+      ]
     },
-    {
-      "judul": "Kreatif & Inovatif",
-      "deskripsi": "Didorong menjadi pemecah masalah dalam berbagai situasi."
-    },
-    {
-      "judul": "Kredibilitas",
-      "deskripsi": "Bertindak dengan integritas penuh yang didasarkan pada kepercayaan."
-    },
-    {
-      "judul": "Pikiran Terbuka",
-      "deskripsi": "Menghargai pendapat orang lain dan terbuka untuk berdiskusi."
-    }
+    { "label": "BERITA", "url": "#berita", "dropdown": false },
+    { "label": "PPDB", "url": "#", "dropdown": false }
   ],
-  "kurikulum": [
-    {
-      "id": "steam",
-      "nama": "STEAM Education",
-      "ikon": "ph-flask",
-      "deskripsi": "Integrasi Sains, Teknologi, Teknik, Seni, dan Matematika. Pendekatan kontekstual agar siswa siap menjawab tantangan dunia modern secara praktis."
-    },
-    {
-      "id": "nasional",
-      "nama": "Kurikulum Nasional",
-      "ikon": "ph-books",
-      "deskripsi": "Berbasis standar nasional yang menitikberatkan pada pembentukan karakter, minat, dan potensi kognitif melalui pendekatan saintifik."
-    },
-    {
-      "id": "diniyah",
-      "nama": "The Diniyah Learning",
-      "ikon": "ph-mosque",
-      "deskripsi": "Menggabungkan nilai luhur Islam dengan keunggulan akademis untuk memaksimalkan potensi spiritual dan intelektual siswa."
-    }
-  ],
-  "programUnggulan": [
-    {
-      "nama": "Tahfidz Metode Insan",
-      "deskripsi": "Program akselerasi menghafal Al-Qur'an dengan target 30 juz dalam waktu 2 tahun secara berurutan dan terstruktur."
-    },
-    {
-      "nama": "Global Exchange",
-      "deskripsi": "Menghubungkan siswa dengan ratusan sekolah di lebih dari 30 negara untuk program pertukaran pelajar internasional."
-    },
-    {
-      "nama": "English & Arabic Camp",
-      "deskripsi": "Karantina bahasa 7 hari dengan metode super memory untuk penguasaan kosakata, tata bahasa, dan percakapan sehari-hari."
-    },
-    {
-      "nama": "See the World",
-      "deskripsi": "Kegiatan pagi membedah berita global dan berdiskusi, membangun kepekaan analitis terhadap isu dunia."
-    },
-    {
-      "nama": "Intensif Olimpiade & MTQ",
-      "deskripsi": "Pelatihan khusus bagi siswa terpilih untuk berkompetisi di ajang sains, matematika, hingga MTQ tingkat internasional."
-    },
-    {
-      "nama": "Student Day",
-      "deskripsi": "Ajang kepemimpinan riil di mana siswa mengambil alih perencanaan dan penyelenggaraan acara besar sekolah."
-    }
-  ],
-  "fasilitas": [
-    "Kelas Modern ber-AC",
-    "Laboratorium (Sains, Bahasa, Teknik)",
-    "Perpustakaan Interaktif",
-    "Masjid (Terpisah Ikhwan/Akhwat)",
-    "Auditorium & Kantin",
-    "Kamar Asrama ber-AC (Meja & Lemari)",
-    "Ruang Kesehatan",
-    "Laundry (3kg/Minggu)"
-  ],
-  "pendaftaran": {
-    "biaya": {
-      "pendaftaran": "Rp 200.000",
-      "pangkal": "Rp 10.000.000",
-      "bulanan": "Rp 1.200.000",
-      "rincianPangkal": "Mencakup Seragam, Jaket, dan Tas Sekolah Resmi.",
-      "rincianBulanan": "Mencakup Makan (3x sehari), Air Minum, Laundry, dan Ekstrakurikuler Utama.",
-      "catatan": "Biaya Pendidikan sudah termasuk biaya kegiatan tahunan sebesar Rp 2.500.000."
-    },
-    "alurLangkah": [
+  "headerCTA": {
+    "label": "Hubungi Kami",
+    "url": "#"
+  },
+  "hero": {
+    "badgeUrl": "https://placehold.co/200x50/ffb800/ffffff?text=Akreditasi+A",
+    "title": "Selamat Datang di SDN 1 Tasikhargo Jatisrono",
+    "description": "Lembaga pendidikan dasar yang berfokus pada pembentukan karakter, kedisiplinan, dan prestasi akademik maupun non-akademik sejak usia dini.",
+    "ctaLabel": "Daftar Sekarang",
+    "ctaUrl": "#",
+    "imageUrl": "https://placehold.co/800x500/f3f4f6/a1a1aa?text=Ilustrasi+Gedung+%26+Siswa+SD"
+  },
+  "features": {
+    "title": "Program Unggulan",
+    "subtitle": "SDN 1 Tasikhargo Jatisrono",
+    "items": [
       {
-        "langkah": "1. Pendaftaran Online",
-        "detail": "Kunjungi situs ppdb.athaya.sch.id, klik 'Daftar Sekarang' dan pilih jenjang SMP. Isi formulir kelengkapan data diri dan orang tua dengan valid."
+        "icon": "<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-12 h-12 mb-4 mx-auto'><path stroke-linecap='round' stroke-linejoin='round' d='M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z' /></svg>",
+        "title": "Fasilitas Lengkap",
+        "description": "Mendukung proses belajar mengajar dengan ruang kelas yang nyaman dan perpustakaan memadai."
       },
       {
-        "langkah": "2. Konfirmasi & Pembayaran",
-        "detail": "Cek WhatsApp/Email untuk info rekening bank. Lakukan pembayaran pendaftaran maksimal 48 jam sebelum batas waktu dan kirim bukti transfer."
+        "icon": "<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-12 h-12 mb-4 mx-auto'><path stroke-linecap='round' stroke-linejoin='round' d='M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z' /></svg>",
+        "title": "Pendidikan Karakter",
+        "description": "Melatih kemandirian, kedisiplinan, kerjasama, dan sopan santun kepada sesama sejak dini."
       },
       {
-        "langkah": "3. Lengkapi Dokumen",
-        "detail": "Setelah pembayaran terkonfirmasi, login kembali ke akun PPDB untuk mengunggah berkas persyaratan dan melengkapi profil."
-      },
-      {
-        "langkah": "4. Wawancara & Seleksi",
-        "detail": "Tunggu pengumuman jadwal seleksi. Persiapkan diri untuk tes tulis (Matematika, IPA), tes mengaji, dan wawancara orang tua beserta siswa."
+        "icon": "<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-12 h-12 mb-4 mx-auto'><path stroke-linecap='round' stroke-linejoin='round' d='M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5' /></svg>",
+        "title": "Ekstrakurikuler",
+        "description": "Pramuka, Seni Tari, dan Olahraga untuk mewadahi minat dan bakat potensi siswa-siswi."
       }
     ]
   },
-  "kontak": {
-    "alamat": "Puhgogor, Kec. Bendosari, Kab. Sukoharjo, Jawa Tengah 57528",
-    "telepon": "0822 2026 9889",
-    "email": "cs@athaya.sch.id",
-    "website": "athaya.sch.id",
-    "instagram": "athayaibssolo"
+  "about": {
+    "profile": {
+      "badge": "Profil Singkat",
+      "description": "SDN 1 Tasikhargo adalah lembaga pendidikan dasar negeri yang memiliki komitmen kuat untuk menciptakan lingkungan belajar yang berkualitas, inklusif, dan mendukung perkembangan kognitif serta karakter anak-anak di wilayah Jatisrono dan sekitarnya.",
+      "imageUrl": "https://placehold.co/600x400/2563eb/ffffff?text=Gedung+Sekolah"
+    },
+    "visionMission": {
+      "badgeVision": "Visi",
+      "vision": "Mewujudkan generasi cerdas, berkarakter mulia, berprestasi, dan berbudaya lingkungan.",
+      "badgeMission": "Misi",
+      "missions": [
+        "Menanamkan keimanan dan ketakwaan melalui pengamalan ajaran agama.",
+        "Mengembangkan potensi akademik dan non-akademik secara optimal.",
+        "Membiasakan budaya disiplin, sopan santun, dan peduli lingkungan di sekolah.",
+        "Meningkatkan kualitas tenaga pendidik dan kependidikan."
+      ],
+      "imageUrl": "https://placehold.co/600x400/2563eb/ffffff?text=Kegiatan+Siswa"
+    }
+  },
+  "news": {
+    "title": "Berita & Artikel",
+    "items": [
+      {
+        "imageUrl": "https://placehold.co/400x300/f3f4f6/a1a1aa?text=Lomba+Sekolah",
+        "categories": ["PRESTASI", "KEGIATAN"],
+        "title": "Juara 1 Lomba Cerdas Cermat Tingkat Kecamatan",
+        "author": "SDN 1 Tasikhargo",
+        "date": "22 SEPTEMBER 2026",
+        "url": "#"
+      },
+      {
+        "imageUrl": "https://placehold.co/400x300/f3f4f6/a1a1aa?text=Upacara+Bendera",
+        "categories": ["KEGIATAN", "NASIONAL"],
+        "title": "Peringatan Hari Kemerdekaan RI ke-81 di Sekolah",
+        "author": "SDN 1 Tasikhargo",
+        "date": "17 AGUSTUS 2026",
+        "url": "#"
+      },
+      {
+        "imageUrl": "https://placehold.co/400x300/f3f4f6/a1a1aa?text=Kegiatan+Pramuka",
+        "categories": ["EKSTRAKURIKULER"],
+        "title": "Perkemahan Sabtu Minggu (Persami) Penggalang",
+        "author": "PEMBINA PRAMUKA",
+        "date": "15 MEI 2026",
+        "url": "#"
+      },
+      {
+        "imageUrl": "https://placehold.co/400x300/f3f4f6/a1a1aa?text=Ujian+Sekolah",
+        "categories": ["AKADEMIK", "INFORMASI"],
+        "title": "Pelaksanaan Penilaian Akhir Semester (PAS) Genap",
+        "author": "TATA USAHA",
+        "date": "11 APRIL 2026",
+        "url": "#"
+      }
+    ]
+  },
+  "footer": {
+    "col1": {
+      "title": "Profil Sekolah",
+      "description": "SDN 1 Tasikhargo berdedikasi mencetak generasi penerus bangsa yang unggul dalam prestasi dan berbudi pekerti luhur."
+    },
+    "col2": {
+      "title": "Kontak Info",
+      "content": "Desa Tasikhargo, Kec. Jatisrono\nKab. Wonogiri, Jawa Tengah\nEmail: info@sdn1tasikhargo.sch.id"
+    },
+    "col3": {
+      "title": "Social Media",
+      "links": [
+        { "icon": "facebook", "url": "#" },
+        { "icon": "twitter", "url": "#" },
+        { "icon": "instagram", "url": "#" }
+      ]
+    },
+    "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.815967732297!2d111.14445!3d-7.91444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a2f123456789%3A0x1234567890abcdef!2sJatisrono%2C%20Wonogiri%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1697200000000!5m2!1sen!2sid",
+    "copyright": "Copyright © 2026 - SDN 1 Tasikhargo Jatisrono"
+  },
+  "whatsapp": {
+    "greeting": "Mulai percakapan",
+    "subGreeting": "Mulai hubungi salah satu staff kami",
+    "replyTime": "Kami akan membalas dalam beberapa menit.",
+    "contacts": [
+      {
+        "role": "Kepala Sekolah",
+        "name": "Bpk. Kepala Sekolah",
+        "number": "6281234567890"
+      },
+      {
+        "role": "Tata Usaha",
+        "name": "Ibu Admin TU",
+        "number": "6281234567891"
+      },
+      {
+        "role": "Panitia PPDB",
+        "name": "Bpk. Guru Kelas",
+        "number": "6281234567892"
+      }
+    ]
   }
 }
