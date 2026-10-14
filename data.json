@@ -1,0 +1,123 @@
+{
+  "sekolah": {
+    "nama": "Athaya Islamic Boarding School Solo",
+    "jenjang": "SMP (Ikhwan & Akhwat)",
+    "tagline": "Global Minded, Strongly Hold Qur'an and Sunnah Values",
+    "deskripsiSingkat": "Kami hadir untuk mendidik generasi muda Muslim agar siap menghadapi tantangan dunia yang terus berubah. Menggabungkan wawasan global yang tajam dengan fondasi tauhid yang kokoh berdasarkan Al-Qur'an dan As-Sunnah.",
+    "ctaText": "Daftar Sekarang",
+    "ctaLink": "https://ppdb.athaya.sch.id"
+  },
+  "nilaiDasar": [
+    {
+      "judul": "Disiplin",
+      "deskripsi": "Memegang teguh nilai Islam dan aturan sekolah dengan komitmen tinggi."
+    },
+    {
+      "judul": "Saling Menghormati",
+      "deskripsi": "Mengakui dan menghargai keragaman di lingkungan sosial."
+    },
+    {
+      "judul": "Kreatif & Inovatif",
+      "deskripsi": "Didorong menjadi pemecah masalah dalam berbagai situasi."
+    },
+    {
+      "judul": "Kredibilitas",
+      "deskripsi": "Bertindak dengan integritas penuh yang didasarkan pada kepercayaan."
+    },
+    {
+      "judul": "Pikiran Terbuka",
+      "deskripsi": "Menghargai pendapat orang lain dan terbuka untuk berdiskusi."
+    }
+  ],
+  "kurikulum": [
+    {
+      "id": "steam",
+      "nama": "STEAM Education",
+      "ikon": "ph-flask",
+      "deskripsi": "Integrasi Sains, Teknologi, Teknik, Seni, dan Matematika. Pendekatan kontekstual agar siswa siap menjawab tantangan dunia modern secara praktis."
+    },
+    {
+      "id": "nasional",
+      "nama": "Kurikulum Nasional",
+      "ikon": "ph-books",
+      "deskripsi": "Berbasis standar nasional yang menitikberatkan pada pembentukan karakter, minat, dan potensi kognitif melalui pendekatan saintifik."
+    },
+    {
+      "id": "diniyah",
+      "nama": "The Diniyah Learning",
+      "ikon": "ph-mosque",
+      "deskripsi": "Menggabungkan nilai luhur Islam dengan keunggulan akademis untuk memaksimalkan potensi spiritual dan intelektual siswa."
+    }
+  ],
+  "programUnggulan": [
+    {
+      "nama": "Tahfidz Metode Insan",
+      "deskripsi": "Program akselerasi menghafal Al-Qur'an dengan target 30 juz dalam waktu 2 tahun secara berurutan dan terstruktur."
+    },
+    {
+      "nama": "Global Exchange",
+      "deskripsi": "Menghubungkan siswa dengan ratusan sekolah di lebih dari 30 negara untuk program pertukaran pelajar internasional."
+    },
+    {
+      "nama": "English & Arabic Camp",
+      "deskripsi": "Karantina bahasa 7 hari dengan metode super memory untuk penguasaan kosakata, tata bahasa, dan percakapan sehari-hari."
+    },
+    {
+      "nama": "See the World",
+      "deskripsi": "Kegiatan pagi membedah berita global dan berdiskusi, membangun kepekaan analitis terhadap isu dunia."
+    },
+    {
+      "nama": "Intensif Olimpiade & MTQ",
+      "deskripsi": "Pelatihan khusus bagi siswa terpilih untuk berkompetisi di ajang sains, matematika, hingga MTQ tingkat internasional."
+    },
+    {
+      "nama": "Student Day",
+      "deskripsi": "Ajang kepemimpinan riil di mana siswa mengambil alih perencanaan dan penyelenggaraan acara besar sekolah."
+    }
+  ],
+  "fasilitas": [
+    "Kelas Modern ber-AC",
+    "Laboratorium (Sains, Bahasa, Teknik)",
+    "Perpustakaan Interaktif",
+    "Masjid (Terpisah Ikhwan/Akhwat)",
+    "Auditorium & Kantin",
+    "Kamar Asrama ber-AC (Meja & Lemari)",
+    "Ruang Kesehatan",
+    "Laundry (3kg/Minggu)"
+  ],
+  "pendaftaran": {
+    "biaya": {
+      "pendaftaran": "Rp 200.000",
+      "pangkal": "Rp 10.000.000",
+      "bulanan": "Rp 1.200.000",
+      "rincianPangkal": "Mencakup Seragam, Jaket, dan Tas Sekolah Resmi.",
+      "rincianBulanan": "Mencakup Makan (3x sehari), Air Minum, Laundry, dan Ekstrakurikuler Utama.",
+      "catatan": "Biaya Pendidikan sudah termasuk biaya kegiatan tahunan sebesar Rp 2.500.000."
+    },
+    "alurLangkah": [
+      {
+        "langkah": "1. Pendaftaran Online",
+        "detail": "Kunjungi situs ppdb.athaya.sch.id, klik 'Daftar Sekarang' dan pilih jenjang SMP. Isi formulir kelengkapan data diri dan orang tua dengan valid."
+      },
+      {
+        "langkah": "2. Konfirmasi & Pembayaran",
+        "detail": "Cek WhatsApp/Email untuk info rekening bank. Lakukan pembayaran pendaftaran maksimal 48 jam sebelum batas waktu dan kirim bukti transfer."
+      },
+      {
+        "langkah": "3. Lengkapi Dokumen",
+        "detail": "Setelah pembayaran terkonfirmasi, login kembali ke akun PPDB untuk mengunggah berkas persyaratan dan melengkapi profil."
+      },
+      {
+        "langkah": "4. Wawancara & Seleksi",
+        "detail": "Tunggu pengumuman jadwal seleksi. Persiapkan diri untuk tes tulis (Matematika, IPA), tes mengaji, dan wawancara orang tua beserta siswa."
+      }
+    ]
+  },
+  "kontak": {
+    "alamat": "Puhgogor, Kec. Bendosari, Kab. Sukoharjo, Jawa Tengah 57528",
+    "telepon": "0822 2026 9889",
+    "email": "cs@athaya.sch.id",
+    "website": "athaya.sch.id",
+    "instagram": "athayaibssolo"
+  }
+}
