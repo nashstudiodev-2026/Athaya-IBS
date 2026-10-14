@@ -52,8 +52,8 @@
             border-bottom-right-radius: 80px;
         }
         /* Scrollbar custom */
-        .wa-popup::-webkit-scrollbar, .prose::-webkit-scrollbar { width: 4px; }
-        .wa-popup::-webkit-scrollbar-thumb, .prose::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .wa-popup::-webkit-scrollbar, .prose::-webkit-scrollbar, #mobile-menu::-webkit-scrollbar { width: 4px; }
+        .wa-popup::-webkit-scrollbar-thumb, .prose::-webkit-scrollbar-thumb, #mobile-menu::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         
         /* Modal Transition */
         #lightbox { transition: opacity 0.3s ease; }
@@ -62,11 +62,11 @@
 <body class="bg-slate-50 font-sans text-slate-800 antialiased relative">
 
     <!-- Header Navigation -->
-    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100 shadow-sm transition-all">
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-30 border-b border-slate-100 shadow-sm transition-all">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             
-            <a href="#" onclick="showView('view-home')" class="flex items-center gap-3">
-                <img id="logo-img" src="" alt="Logo" class="w-12 h-12 object-contain rounded-full shadow-sm bg-white p-1">
+            <a href="javascript:void(0)" onclick="showView('view-home')" class="flex items-center gap-3">
+                <img id="logo-img" src="" alt="Logo" class="w-10 h-10 md:w-12 md:h-12 object-contain rounded-full shadow-sm bg-white p-0.5">
                 <span id="logo-text" class="font-bold text-lg md:text-xl tracking-tight text-slate-800"></span>
             </a>
 
@@ -75,25 +75,35 @@
                 <!-- Injected via JS -->
             </nav>
 
-            <a href="#footer-contact" class="hidden lg:inline-block bg-brand-blue hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-colors shadow-md shadow-blue-500/30">
+            <a href="#footer-contact" onclick="document.getElementById('footer-contact').scrollIntoView({behavior:'smooth'})" class="hidden lg:inline-block bg-brand-blue hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-colors shadow-md shadow-blue-500/30">
                 Hubungi Kami
             </a>
 
             <!-- Mobile Menu Toggle Button -->
-            <button id="mobile-menu-btn" class="lg:hidden text-slate-600 p-2 focus:outline-none">
+            <button id="mobile-menu-btn" class="lg:hidden text-slate-600 p-2 focus:outline-none hover:bg-slate-100 rounded-lg transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
         </div>
-
-        <!-- Mobile Nav Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg left-0">
-            <nav class="flex flex-col p-4 space-y-2 text-sm font-semibold text-slate-700" id="mobile-nav-container">
-                <!-- Injected via JS -->
-            </nav>
-        </div>
     </header>
+
+    <!-- MOBILE NAVIGATION (SLIDE FROM RIGHT) -->
+    <!-- Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-slate-900/50 z-40 hidden opacity-0 transition-opacity duration-300"></div>
+    
+    <!-- Sidebar -->
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-white z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto shadow-2xl flex flex-col">
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+            <span class="font-bold text-slate-800">Menu Navigasi</span>
+            <button id="mobile-close-btn" class="text-slate-500 hover:text-red-500 bg-white p-1.5 rounded-md shadow-sm border border-slate-200 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </div>
+        <nav class="flex-1 p-5 space-y-1 text-sm font-semibold text-slate-700" id="mobile-nav-container">
+            <!-- Injected via JS -->
+        </nav>
+    </div>
 
     <!-- VIEWS CONTAINER -->
     <main id="main-content">
@@ -109,14 +119,14 @@
                     <h1 id="hero-title" class="text-4xl lg:text-5xl font-extrabold text-slate-900 leading-[1.15] tracking-tight"></h1>
                     <p id="hero-desc" class="text-slate-600 text-base lg:text-lg leading-relaxed max-w-lg"></p>
                     <div class="pt-4">
-                        <a href="#ppdb" id="hero-cta" onclick="document.getElementById('ppdb').scrollIntoView({behavior:'smooth'})" class="inline-block bg-brand-blue hover:bg-blue-700 text-white px-8 py-3.5 rounded-lg text-sm font-semibold transition-colors shadow-lg shadow-blue-500/40"></a>
+                        <a href="javascript:void(0)" id="hero-cta" onclick="document.getElementById('ppdb').scrollIntoView({behavior:'smooth'})" class="inline-block bg-brand-blue hover:bg-blue-700 text-white px-8 py-3.5 rounded-lg text-sm font-semibold transition-colors shadow-lg shadow-blue-500/40"></a>
                     </div>
                 </div>
                 <div class="relative flex justify-center lg:justify-end mt-10 lg:mt-0">
                     <div class="absolute inset-0 bg-gradient-to-tr from-brand-light to-white rounded-[3rem] -z-10 transform translate-x-4 translate-y-4 shadow-soft"></div>
                     <img id="hero-img" src="" alt="Hero Composition" class="w-full max-w-lg rounded-2xl shadow-2xl object-cover hover:scale-[1.01] transition-transform duration-500 bg-white p-2">
-                    <!-- Badge diperkecil -->
-                    <img id="hero-badge" src="" class="absolute -top-6 -right-2 lg:-right-6 w-28 lg:w-32 shadow-lg rounded-lg border-2 border-white bg-white" alt="Badge">
+                    <!-- Badge diperkecil sesuai request -->
+                    <img id="hero-badge" src="" class="absolute -top-4 -right-2 lg:-right-4 w-20 lg:w-24 shadow-lg rounded-md border-2 border-white bg-white" alt="Badge">
                 </div>
             </section>
 
@@ -161,7 +171,7 @@
             </section>
 
             <!-- Fasilitas Section -->
-            <section id="fasilitas" class="max-w-7xl mx-auto px-6 py-20">
+            <section id="fasilitas" class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-100">
                 <div class="text-center mb-12">
                     <h2 id="fac-title" class="text-3xl font-bold text-slate-900 mb-2"></h2>
                     <p id="fac-subtitle" class="text-slate-500"></p>
@@ -181,7 +191,7 @@
             </section>
 
             <!-- PPDB Section -->
-            <section id="ppdb" class="max-w-7xl mx-auto px-6 py-20">
+            <section id="ppdb" class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-100">
                 <div class="bg-brand-blue rounded-3xl p-10 md:p-16 text-white grid md:grid-cols-2 gap-12 items-center shadow-2xl shadow-blue-500/20 relative overflow-hidden">
                     <!-- Pattern Deco -->
                     <div class="absolute top-0 right-0 opacity-10">
@@ -205,16 +215,16 @@
             <!-- Berita & Artikel (Home - Max 4) -->
             <section id="berita" class="bg-white py-20 border-t border-slate-100">
                 <div class="max-w-7xl mx-auto px-6">
-                    <div class="flex justify-between items-end mb-10">
+                    <div class="flex justify-between items-end mb-10 border-b border-slate-100 pb-4">
                         <h2 id="news-title-home" class="text-3xl font-bold text-slate-900"></h2>
-                        <button onclick="showView('view-news-all')" class="hidden md:inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-blue-800 transition-colors">
+                        <button onclick="showView('view-news-all')" class="hidden md:inline-flex items-center gap-2 text-brand-blue font-bold hover:text-blue-800 transition-colors bg-blue-50 px-4 py-2 rounded-lg">
                             Lihat Selengkapnya &rarr;
                         </button>
                     </div>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="news-container-home"></div>
                     <div class="mt-10 text-center md:hidden">
-                        <button onclick="showView('view-news-all')" class="inline-block bg-slate-100 hover:bg-slate-200 text-slate-800 px-6 py-3 rounded-lg text-sm font-semibold transition-colors">
-                            Lihat Semua Berita
+                        <button onclick="showView('view-news-all')" class="w-full inline-block bg-brand-blue text-white px-6 py-3.5 rounded-lg text-sm font-semibold shadow-lg hover:bg-blue-700 transition-colors">
+                            Lihat Semua Berita & Artikel
                         </button>
                     </div>
                 </div>
@@ -226,7 +236,7 @@
         <!-- ========================================== -->
         <div id="view-news-all" class="hidden bg-slate-50 min-h-screen py-12">
             <div class="max-w-7xl mx-auto px-6">
-                <button onclick="showView('view-home')" class="mb-8 inline-flex items-center gap-2 text-slate-500 hover:text-brand-blue font-medium transition-colors">
+                <button onclick="showView('view-home')" class="mb-8 inline-flex items-center gap-2 text-slate-500 hover:text-brand-blue font-medium transition-colors bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200">
                     &larr; Kembali ke Beranda
                 </button>
                 <h2 id="news-title-all" class="text-3xl font-bold text-slate-900 mb-10 border-b pb-4">Semua Berita & Artikel</h2>
@@ -239,7 +249,7 @@
         <!-- ========================================== -->
         <div id="view-news-detail" class="hidden bg-white min-h-screen py-12">
             <div class="max-w-3xl mx-auto px-6">
-                <button onclick="showView('view-news-all')" class="mb-8 inline-flex items-center gap-2 text-slate-500 hover:text-brand-blue font-medium transition-colors">
+                <button onclick="showView('view-news-all')" class="mb-8 inline-flex items-center gap-2 text-slate-500 hover:text-brand-blue font-medium transition-colors bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
                     &larr; Kembali ke Daftar Berita
                 </button>
                 
@@ -247,11 +257,11 @@
                     <div id="detail-tags" class="flex gap-2 flex-wrap"></div>
                     <h1 id="detail-title" class="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight"></h1>
                     <div class="flex items-center text-sm text-slate-500 font-medium uppercase tracking-wide gap-3 pb-6 border-b">
-                        <span id="detail-author"></span>
+                        <span id="detail-author" class="font-bold text-brand-blue"></span>
                         <span>&bull;</span>
                         <span id="detail-date"></span>
                     </div>
-                    <img id="detail-img" src="" class="w-full rounded-2xl shadow-md object-cover h-64 md:h-96" alt="Cover">
+                    <img id="detail-img" src="" class="w-full rounded-2xl shadow-md object-cover h-[300px] md:h-[450px]" alt="Cover">
                     <div id="detail-content" class="prose prose-blue max-w-none text-slate-700 leading-loose text-lg py-6">
                         <!-- Content injected via JS -->
                     </div>
@@ -273,7 +283,7 @@
                 <p id="footer-col2-content" class="text-blue-100 text-sm leading-relaxed whitespace-pre-line"></p>
             </div>
             <div>
-                <h3 id="footer-col3-title" class="font-bold text-lg mb-4"></h3>
+                <h3 id="footer-col3-title" class="font-bold text-lg mb-4">Social Media</h3>
                 <div class="flex gap-4" id="footer-socials"></div>
             </div>
             <div class="bg-white/10 p-2 rounded-xl">
@@ -286,34 +296,36 @@
     </footer>
 
     <!-- WhatsApp Widget -->
-    <div class="fixed bottom-6 right-6 z-50">
+    <div class="fixed bottom-6 right-6 z-40">
         <div id="wa-popup" class="hidden absolute bottom-16 right-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden transition-all origin-bottom-right">
             <div class="bg-[#25D366] p-5 text-white">
                 <h4 id="wa-greeting" class="font-bold text-lg"></h4>
                 <p id="wa-subgreeting" class="text-sm opacity-90"></p>
             </div>
-            <div class="p-4 bg-slate-50 text-xs text-slate-500 text-center">
+            <div class="p-4 bg-slate-50 text-xs text-slate-500 text-center border-b border-slate-100">
                 <span id="wa-reply-time"></span>
             </div>
             <div class="p-2 max-h-64 overflow-y-auto" id="wa-contacts"></div>
         </div>
-        <button id="wa-toggle" class="bg-[#25D366] hover:bg-[#20b858] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110">
+        <button id="wa-toggle" class="bg-[#25D366] hover:bg-[#20b858] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110 relative group">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
             </svg>
+            <!-- Tooltip -->
+            <span class="absolute right-16 bg-white text-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Hubungi Kami</span>
         </button>
     </div>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox" class="fixed inset-0 bg-black/90 z-[100] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="closeLightbox(event)">
-        <button class="absolute top-6 right-6 text-white hover:text-gray-300 p-2" onclick="closeLightbox(event, true)">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-[100] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="closeLightbox(event)">
+        <button class="absolute top-6 right-6 text-white hover:text-gray-300 p-2 bg-white/10 rounded-full transition-colors" onclick="closeLightbox(event, true)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
-        <img id="lightbox-img" src="" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl object-contain pointer-events-none">
+        <img id="lightbox-img" src="" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl object-contain pointer-events-none border border-white/10">
     </div>
 
     <script>
-        let globalData = null; // Menyimpan data json agar bisa diakses multi-view
+        let globalData = null;
 
         // View Management (SPA)
         function showView(viewId) {
@@ -329,9 +341,6 @@
                 }
             });
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Close mobile menu if open
-            document.getElementById('mobile-menu').classList.add('hidden');
         }
 
         // News Detail Handler
@@ -357,30 +366,56 @@
             const lImg = document.getElementById('lightbox-img');
             lImg.src = imgSrc;
             lightbox.classList.remove('hidden');
-            // Timeout to allow display block to apply before opacity transition
             setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+            document.body.style.overflow = 'hidden'; // Lock scroll
         }
 
         function closeLightbox(e, force = false) {
-            // Close if clicked outside image or X button
             if (force || e.target.id === 'lightbox') {
                 const lightbox = document.getElementById('lightbox');
                 lightbox.classList.add('opacity-0');
+                document.body.style.overflow = ''; // Unlock scroll
                 setTimeout(() => {
                     lightbox.classList.add('hidden');
                     document.getElementById('lightbox-img').src = '';
-                }, 300); // match transition duration
+                }, 300);
             }
         }
 
+        // Mobile Menu Logic (Slide from Right)
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        const mobileCloseBtn = document.getElementById('mobile-close-btn');
+
+        function toggleMobileMenu(show) {
+            if (show) {
+                mobileOverlay.classList.remove('hidden');
+                setTimeout(() => mobileOverlay.classList.remove('opacity-0'), 10);
+                mobileMenu.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden'; // Lock background scroll
+            } else {
+                mobileOverlay.classList.add('opacity-0');
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = ''; // Restore background scroll
+                setTimeout(() => mobileOverlay.classList.add('hidden'), 300);
+            }
+        }
+
+        mobileBtn.addEventListener('click', () => toggleMobileMenu(true));
+        mobileCloseBtn.addEventListener('click', () => toggleMobileMenu(false));
+        mobileOverlay.addEventListener('click', () => toggleMobileMenu(false));
+
+        // Data Fetching and Injecting
         document.addEventListener('DOMContentLoaded', async () => {
             try {
+                // Fetch using cache busting in dev, but standard in prod
                 const response = await fetch('data.json');
                 if (!response.ok) throw new Error('Data tidak ditemukan');
                 globalData = await response.json();
                 const data = globalData;
 
-                // 1. Populate Header & Nav (Desktop & Mobile)
+                // 1. Populate Header & Nav
                 document.getElementById('logo-img').src = data.school.logoUrl;
                 document.getElementById('logo-text').textContent = data.school.shortName;
 
@@ -390,13 +425,15 @@
                 let mobNavHtml = '';
 
                 data.navigation.forEach(item => {
-                    // Cek internal anchor link vs view link
-                    const isAnchor = item.url.startsWith('#');
-                    const clickAction = isAnchor ? `onclick="showView('view-home'); setTimeout(() => document.querySelector('${item.url}').scrollIntoView({behavior:'smooth'}), 100)"` : `href="${item.url}"`;
+                    const isAnchor = item.url.startsWith('#') && item.url !== '#';
+                    const targetId = isAnchor ? item.url.replace('#', '') : '';
+                    
+                    // Logic click: If anchor, go to home view first, then scroll
+                    const clickAction = isAnchor ? `onclick="showView('view-home'); setTimeout(() => { const el = document.getElementById('${targetId}'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 100); toggleMobileMenu(false);"` : `href="${item.url}" onclick="toggleMobileMenu(false)"`;
 
                     if (item.dropdown) {
                         let subItems = item.items.map(sub => `<a href="${sub.url}" class="block px-4 py-2 hover:bg-slate-700 transition-colors">${sub.label}</a>`).join('');
-                        let mobSubItems = item.items.map(sub => `<a href="${sub.url}" class="block py-2 text-slate-500 pl-4">${sub.label}</a>`).join('');
+                        let mobSubItems = item.items.map(sub => `<a href="${sub.url}" class="block py-2 text-slate-500 pl-4 hover:text-brand-blue" onclick="toggleMobileMenu(false)">${sub.label}</a>`).join('');
                         
                         navHtml += `
                             <div class="relative group nav-item py-4">
@@ -409,8 +446,8 @@
                             </div>
                         `;
                         mobNavHtml += `
-                            <div class="border-b border-slate-100 pb-2">
-                                <span class="block py-2 text-slate-400">${item.label}</span>
+                            <div class="border-b border-slate-100 pb-2 mb-2">
+                                <span class="block py-2 text-slate-400 font-bold">${item.label}</span>
                                 <div class="flex flex-col">${mobSubItems}</div>
                             </div>
                         `;
@@ -418,7 +455,7 @@
                         // Desktop Nav
                         navHtml += `<a ${isAnchor ? 'href="javascript:void(0)"' : `href="${item.url}"`} ${clickAction} class="hover:text-brand-blue transition-colors py-4">${item.label}</a>`;
                         // Mobile Nav
-                        mobNavHtml += `<a ${isAnchor ? 'href="javascript:void(0)"' : `href="${item.url}"`} ${clickAction} class="block py-3 border-b border-slate-100 hover:text-brand-blue">${item.label}</a>`;
+                        mobNavHtml += `<a ${isAnchor ? 'href="javascript:void(0)"' : `href="${item.url}"`} ${clickAction} class="block py-3 border-b border-slate-100 hover:text-brand-blue hover:pl-2 transition-all">${item.label}</a>`;
                     }
                 });
                 navContainer.innerHTML = navHtml;
@@ -464,7 +501,7 @@
                 const facContainer = document.getElementById('facilities-container');
                 data.facilities.items.forEach(item => {
                     facContainer.innerHTML += `
-                        <div class="group relative overflow-hidden rounded-xl shadow-sm cursor-pointer aspect-square" onclick="openLightbox('${item.imageUrl}')">
+                        <div class="group relative overflow-hidden rounded-xl shadow-sm cursor-pointer aspect-square bg-slate-200" onclick="openLightbox('${item.imageUrl}')">
                             <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
                                 <h4 class="text-white font-semibold text-sm md:text-base group-hover:text-blue-300 transition-colors">${item.title}</h4>
@@ -480,7 +517,7 @@
                 data.gallery.items.forEach(item => {
                     galContainer.innerHTML += `
                         <div class="group overflow-hidden rounded-xl cursor-pointer shadow-md bg-white border border-slate-200" onclick="openLightbox('${item.imageUrl}')">
-                            <div class="h-40 md:h-48 overflow-hidden">
+                            <div class="h-40 md:h-56 overflow-hidden bg-slate-200">
                                 <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-3 text-center">
@@ -508,7 +545,7 @@
                     let tags = item.categories.map(cat => `<span class="bg-brand-blue text-white text-[10px] font-bold px-2 py-1 rounded-sm">${cat}</span>`).join('');
                     return `
                         <a href="javascript:void(0)" onclick="openNewsDetail(${index})" class="block group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-slate-100 pb-4 flex flex-col h-full">
-                            <div class="relative h-48 overflow-hidden flex-shrink-0">
+                            <div class="relative h-48 overflow-hidden flex-shrink-0 bg-slate-200">
                                 <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 flex flex-col flex-grow">
@@ -539,7 +576,6 @@
                 document.getElementById('footer-col1-desc').textContent = data.footer.col1.description;
                 document.getElementById('footer-col2-title').textContent = data.footer.col2.title;
                 document.getElementById('footer-col2-content').textContent = data.footer.col2.content;
-                document.getElementById('footer-col3-title').textContent = data.footer.col3.title;
                 document.getElementById('footer-map').src = data.footer.mapEmbed;
                 document.getElementById('footer-copy').textContent = data.footer.copyright;
                 
@@ -549,8 +585,8 @@
                     twitter: '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>',
                     instagram: '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>'
                 };
-                data.footer.col3.links.forEach(link => {
-                    socialContainer.innerHTML += `<a href="${link.url}" class="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors">${icons[link.icon] || icons.facebook}</a>`;
+                data.footer.socialMedia.forEach(link => {
+                    socialContainer.innerHTML += `<a href="${link.url}" target="_blank" title="${link.name}" class="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors">${icons[link.icon.toLowerCase()] || icons.facebook}</a>`;
                 });
 
                 // 10. Populate WhatsApp
@@ -578,14 +614,7 @@
                 document.getElementById('hero-title').innerHTML = "Kesalahan memuat <br/> <span class='text-brand-blue'>Data JSON</span>";
             }
 
-            // Mobile Menu Toggle Event
-            const mobileBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // WA Widget Logic
+            // WA Widget External Click Logic
             const waToggle = document.getElementById('wa-toggle');
             const waPopup = document.getElementById('wa-popup');
             waToggle.addEventListener('click', () => waPopup.classList.toggle('hidden'));
